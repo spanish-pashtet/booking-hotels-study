@@ -3,7 +3,11 @@ from typing import Optional
 from datetime import date
 from pydantic import BaseModel
 
+from app.bookings.router import router as router_bookings
+
 app = FastAPI()
+
+app.include_router(router_bookings)
 
 class HotelsSearchArgs:
     def __init__(
@@ -40,11 +44,11 @@ def get_hotels(
     ]
     return hotels
 
-class SBooking(BaseModel):
-    room_id: int
-    date_from: date 
-    date_to: date
+# class SBooking(BaseModel):
+#     room_id: int
+#     date_from: date 
+# #     date_to: date
 
-@app.post("/bookings")
-def add_booking(booking: SBooking):
-    pass
+# @app.post("/bookings")
+# def add_booking(booking: SBooking):
+#     pass
